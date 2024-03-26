@@ -1,0 +1,55 @@
+1) Steps to setup flink and kafka manually in Windows machine:
+   ----------------------------------------------------------
+
+Download latest kafka:
+---------------------- 
+
+cd C:\Users\tunik\kafka\bin\windows
+zookeeper-server-start.bat ..\..\config\zookeeper.properties
+
+Open new terminal:
+-----------------
+cd C:\Users\tunik\kafka\bin\windows
+.\kafka-server-start.bat ..\..\config\server.properties 
+
+Create Topic (only once)
+------------
+.\kafka-topics.bat --create --topic mytopic --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1
+
+Open new windows terminal:
+-------------------------
+cd C:\Users\tunik\kafka\bin\windows
+
+Listing all the topics :
+.\kafka-topics.bat --list --bootstrap-server localhost:9092
+
+Create Kafka Console Producer:
+-----------------------------
+.\kafka-console-producer.bat --topic mytopic --bootstrap-server localhost:9092
+
+Open new terminal:
+------------------
+cd C:\Users\tunik\kafka\bin\windows
+Create Kafka Console Consumer 
+.\kafka-console-consumer.bat --topic mytopic --from-beginning --bootstrap-server localhost:9092
+
+Download and setup cygwin Terminal (to execute linux commands)
+-------------------------------------------------------------
+Refer : https://medium.com/@pritampathak/running-apache-flink-on-windows-7da5f2641c0b
+-----------------------------------------------------------------------------------
+Location to download flink C:\cygwin64\home\tunik
+
+Starting Apache flink
+---------------------
+cd C:\cygwin64\home\tunik\flink-1.14.0\bin
+./start-cluster.sh
+
+To access flink ui --> locahost:8081
+
+Setup Maven Project in intellij to read-write kafka-topic throuh flink Api
+--------------------------------------------------------------------------
+
+https://medium.com/@pritampathak/running-apache-flink-on-windows-7da5f2641c0b
+https://www.youtube.com/watch?v=E00RQ-dNHEQ&t=1s
+https://www.youtube.com/watch?v=nIGuFK2qNe8
+https://github.com/binodsuman/Kafka_Flink_Integration/tree/main/kafka-flink-demo
